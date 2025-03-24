@@ -1,0 +1,46 @@
+/* src/styles/PostDetail.css */
+.post-detail {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.post-detail h2 {
+  margin-bottom: 15px;
+  color: #24292e;
+  font-size: 2rem;
+}
+
+.post-detail .post-meta {
+  color: #6a737d;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #e1e4e8;
+  padding-bottom: 15px;
+}
+
+.post-content {
+  line-height: 1.7;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.post-content p {
+  margin-bottom: 20px;
+}
+
+.post-detail .post-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e1e4e8;
+}
+
+.action-btn.back {
+  background-color: #6a737d;
+  color: white;
+}
