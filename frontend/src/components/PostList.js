@@ -59,6 +59,18 @@ function PostList() {
       ) : (
         posts.map((post) => (
           <div key={post.id} className="post-card">
+            {/* Display the image if it exists */}
+            {post.file && (
+              <div className="post-image">
+                <img
+                  src={`http://localhost:5000/${post.file}`}
+                  alt={post.title}
+                  className="post-thumbnail"
+                           style={{ maxWidth: "100%", height: "100px", objectFit: "cover", border: "1px solid black" }}
+
+                />
+              </div>
+            )}
             <h3>
               <Link to={`/post/${post.id}`}>{post.title}</Link>
             </h3>

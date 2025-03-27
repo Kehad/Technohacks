@@ -44,3 +44,17 @@
   background-color: #6a737d;
   color: white;
 }
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+
+@media screen and (max-width: 767px) {
+  
+  .post-image {
+    max-width: 100%;
+  }
+}

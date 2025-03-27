@@ -55,23 +55,38 @@ function PostDetail() {
   if (error) return <div className="error">{error}</div>;
   if (!post) return <div className="not-found">Post not found</div>;
 
-    const update = formatDate(post.updated);
-    console.log(update);
-
   return (
     <div className="post-detail">
       <h2>{post.title}</h2>
       <div className="post-meta">
         <span>By {post.author}</span>
         <span>Posted on {formatDate(post.date)}</span>
-        {/* {post.updated && <span>(Updated: {formatDate(post.updated)})</span>} */}
+        {post.updated && <span>(Updated: {formatDate(post.updated)})</span>}
       </div>
+
 
       <div className="post-content">
         {post.content.split("\n").map((paragraph, index) => (
           <p key={index}>{paragraph}</p>
         ))}
       </div>
+      {/* Display the image if it exists */}
+      {post.file && (
+        <div className="post-image">
+          {/* <img
+            src={`http://localhost:5000/${post.file}`}
+            alt={post.title}
+            className="post-image"
+          /> */}
+          <img
+              // src={formData.file}
+            src={`http://localhost:5000/${post.file}`} 
+              style={{ maxWidth: "100%", height: "auto" }}
+              alt={post.title}
+            className="post-image"
+            />
+        </div>
+      )}
 
       <div className="post-actions">
         <Link to="/" className="action-btn back">

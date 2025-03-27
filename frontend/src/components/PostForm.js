@@ -38,6 +38,7 @@ function PostForm() {
             author: data.author || "",
             file: data.file || "",
           });
+          console.log(formData);
           setLoading(false);
         })
         .catch((err) => {
@@ -75,8 +76,9 @@ function PostForm() {
       formDataToSend.append("author", formData.author);
       console.log(image);
       if (image) {
-        const imageUrl = URL.createObjectURL(image);
-        formDataToSend.append("file", imageUrl);
+        // const imageUrl = URL.createObjectURL(image);
+        // formDataToSend.append("file", imageUrl);
+        formDataToSend.append("file", image);
       }
       console.log(formDataToSend);
 
@@ -92,8 +94,10 @@ function PostForm() {
       }
 
       const savedPost = await response.json();
+      setSubmitting(false);
 
       // Redirect to the saved post
+      navigate(`/`);
       // navigate(`/post/${savedPost.id}`);
     } catch (err) {
       setError(err.message);
@@ -157,10 +161,15 @@ function PostForm() {
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
           />
-          <img src={formData.file} alt="Edit Picture" />
+          {isEditMode && (
+            <img
+              // src={formData.file}
+              src={`http://localhost:5000/${formData.file} `|| image}
+              style={{ maxWidth: "40%", height: "auto" }}
+              alt="Edit icture"
+            />
+          )}
         </div>
-
-        
 
         <div className="form-actions">
           <button
