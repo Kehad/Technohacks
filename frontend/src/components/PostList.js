@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "../styles/PostList.css";
 import { formatDate } from "../utils/utils";
 
+const API_BASE_URL = "https://technohacks-backend.onrender.com";
+
 function PostList() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,7 @@ function PostList() {
 
   useEffect(() => {
     // Fetch posts from API
-    fetch("http://localhost:5000/api/posts")
+    fetch(`${API_BASE_URL}/api/posts`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
@@ -32,7 +34,7 @@ function PostList() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
           method: "DELETE",
         });
 
@@ -63,7 +65,7 @@ function PostList() {
             {post.file && (
               <div className="post-image">
                 <img
-                  src={`http://localhost:5000/${post.file}`}
+                  src={`${API_BASE_URL}/${post.file}`}
                   alt={post.title}
                   className="post-thumbnail"
                            style={{ maxWidth: "100%", height: "100px", objectFit: "cover", border: "1px solid black" }}
