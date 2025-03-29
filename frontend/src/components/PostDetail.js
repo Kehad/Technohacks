@@ -5,6 +5,9 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import "../styles/PostDetail.css";
 import { formatDate } from "../utils/utils";
 
+const API_BASE_URL = "https://technohacks-backend.onrender.com";
+
+
 function PostDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -14,7 +17,7 @@ function PostDetail() {
 
   useEffect(() => {
     // Fetch post details from API
-    fetch(`http://localhost:5000/api/posts/${id}`)
+    fetch(`${API_BASE_URL}/api/posts/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Post not found");
@@ -35,7 +38,7 @@ function PostDetail() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this post?")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/posts/${id}`, {
           method: "DELETE",
         });
 
@@ -80,7 +83,7 @@ function PostDetail() {
           /> */}
           <img
               // src={formData.file}
-            src={`http://localhost:5000/${post.file}`} 
+            src={`${API_BASE_URL}/${post.file}`} 
               style={{ maxWidth: "100%", height: "auto" }}
               alt={post.title}
             className="post-image"

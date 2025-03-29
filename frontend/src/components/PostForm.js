@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/PostForm.css";
 
+const API_BASE_URL = "https://technohacks-backend.onrender.com";
+
+
 function PostForm() {
   const { id } = useParams();
   console.log(id);
@@ -66,8 +69,8 @@ function PostForm() {
 
     try {
       const url = isEditMode
-        ? `http://localhost:5000/api/posts/${id}`
-        : "http://localhost:5000/api/posts";
+        ? `${API_BASE_URL}/api/posts/${id}`
+        : `${API_BASE_URL}/api/posts`;  
 
       const method = isEditMode ? "PUT" : "POST";
 
@@ -165,7 +168,7 @@ function PostForm() {
           {isEditMode && (
             <img
               // src={formData.file}
-              src={`http://localhost:5000/${formData.file} `|| image}
+              src={`${API_BASE_URL}/${formData.file} `|| image}
               style={{ maxWidth: "40%", height: "auto" }}
               alt="Edit icture"
             />
