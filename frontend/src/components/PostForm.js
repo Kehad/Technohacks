@@ -46,6 +46,7 @@ function PostForm() {
           setLoading(false);
         });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, isEditMode]);
 
   // Handle form input changes
@@ -93,7 +94,7 @@ function PostForm() {
         throw new Error(errorData.message || "Failed to save post");
       }
 
-      const savedPost = await response.json();
+      await response.json();
       setSubmitting(false);
 
       // Redirect to the saved post
