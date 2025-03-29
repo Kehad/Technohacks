@@ -5,6 +5,8 @@ const tasksList = document.getElementById("tasksList");
 const taskCount = document.getElementById("taskCount");
 const filterButtons = document.querySelectorAll(".filter-btn");
 
+const API_BASE_URL = "https://technohacks-todo-backend.onrender.com";
+
 // Modal Elements
 const editModal = document.getElementById("editModal");
 const editTaskInput = document.getElementById("editTaskInput");
@@ -57,8 +59,8 @@ function closeModal() {
 // API Functions
 async function fetchTasks() {
   try {
-    const response = await fetch("http://localhost:3000/api/tasks");
-    if (!response.ok) {
+      const response = await fetch(`${API_BASE_URL}/api/tasks`);
+      if (!response.ok) {
       throw new Error("Failed to fetch tasks");
     }
     const tasks = await response.json();
@@ -82,7 +84,7 @@ async function addTask() {
   };
 
   try {
-    const response = await fetch("http://localhost:3000/api/tasks", {
+    const response = await fetch(`${API_BASE_URL}/api/tasks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -115,7 +117,7 @@ async function addTask() {
 
 async function deleteTask(id) {
   try {
-    const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/tasks/${id}`, {
       method: "DELETE",
     });
 
@@ -143,7 +145,7 @@ async function toggleTaskStatus(id) {
     tasks[taskIndex].completed = !tasks[taskIndex].completed;
 
     try {
-      const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tasks/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -174,7 +176,7 @@ async function editTask(id, newText) {
     tasks[taskIndex].text = newText;
 
     try {
-      const response = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/tasks/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
