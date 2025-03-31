@@ -8,10 +8,9 @@ const API_BASE_URL = "https://technohacks-backend.onrender.com";
 
 function PostForm() {
   const { id } = useParams();
-  console.log(id);
   const navigate = useNavigate();
   const isEditMode = Boolean(id);
-  console.log(isEditMode);
+
 
   const [formData, setFormData] = useState({
     title: "",
@@ -26,7 +25,7 @@ function PostForm() {
   // If in edit mode, fetch existing post data
   useEffect(() => {
     if (isEditMode) {
-      fetch(`http://localhost:5000/api/posts/${id}`)
+      fetch(`${API_BASE_URL}/api/posts/${id}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("Post not found");
@@ -34,14 +33,12 @@ function PostForm() {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           setFormData({
             title: data.title,
             content: data.content,
             author: data.author || "",
             file: data.file || "",
           });
-          console.log(formData);
           setLoading(false);
         })
         .catch((err) => {
@@ -78,19 +75,17 @@ function PostForm() {
       formDataToSend.append("title", formData.title);
       formDataToSend.append("content", formData.content);
       formDataToSend.append("author", formData.author);
-      console.log(image);
       if (image) {
         // const imageUrl = URL.createObjectURL(image);
         // formDataToSend.append("file", imageUrl);
         formDataToSend.append("file", image);
       }
-      console.log(formDataToSend);
+
 
       const response = await fetch(url, {
         method,
         body: formDataToSend,
       });
-      console.log(response);
 
       if (!response.ok) {
         const errorData = await response.json();
